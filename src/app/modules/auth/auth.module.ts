@@ -11,16 +11,18 @@ import { reducer } from './store/reducers/auth.reducers';
 import { AuthService } from './services/auth/auth.service';
 import { RegisterEffect } from './store/effects/register.effects';
 import { SharedModule } from '../shared/shared.module';
+import { LoginComponent } from './components/login/login.component';
+import { LoginEffect } from './store/effects/login.effects';
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, LoginComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     SharedModule,
     StoreModule.forFeature('auth', reducer),
-    EffectsModule.forFeature([RegisterEffect]),
+    EffectsModule.forFeature([RegisterEffect, LoginEffect]),
   ],
   providers: [AuthService],
 })

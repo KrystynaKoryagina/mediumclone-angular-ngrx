@@ -4,6 +4,11 @@ export interface UserRegister {
   password: string;
 }
 
+export interface UserLogin {
+  email: string;
+  password: string;
+}
+
 export interface CurrentUser {
   id: number;
   username: string;

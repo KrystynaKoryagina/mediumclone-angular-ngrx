@@ -8,11 +8,11 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { CurrentUser } from '../../../../models/user';
-import { registerAction, registerFailureAction, registerSuccessAction } from '../actions/register.actions';
 import { PersistenceService } from '../../../../modules/shared/services/persistence/persistence.service';
+import { loginAction, loginFailureAction, loginSuccessAction } from '../actions/login.actions';
 
 @Injectable()
-export class RegisterEffect {
+export class LoginEffect {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
@@ -20,27 +20,27 @@ export class RegisterEffect {
     private router: Router
   ) {}
 
-  register$ = createEffect(() =>
+  login$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(registerAction),
-      switchMap(({ registerBody }) => {
-        return this.authService.register(registerBody).pipe(
+      ofType(loginAction),
+      switchMap(({ loginBody }) => {
+        return this.authService.login(loginBody).pipe(
           map((user: CurrentUser) => {
             this.persistenceService.set('accessToken', user.token);
-            return registerSuccessAction({ user });
+            return loginSuccessAction({ user });
           }),
           catchError((errorsResponse: HttpErrorResponse) =>
-            of(registerFailureAction({ errors: errorsResponse.error.errors }))
+            of(loginFailureAction({ errors: errorsResponse.error.errors }))
           )
         );
       })
     )
   );
 
-  redirectAfterSubmit$ = createEffect(
+  loginAfterSubmit$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(registerSuccessAction),
+        ofType(loginSuccessAction),
         tap(() => this.router.navigateByUrl('/'))
       ),
     { dispatch: false }
