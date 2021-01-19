@@ -13,14 +13,18 @@ export class AuthService {
   apiUrl: string;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = `${environment.baseUrl}/users`;
+    this.apiUrl = `${environment.baseUrl}`;
   }
 
   register(body: RegisterRequest): Observable<CurrentUser> {
-    return this.http.post<AuthResponse>(this.apiUrl, body).pipe(pluck('user'));
+    return this.http.post<AuthResponse>(`${this.apiUrl}/users`, body).pipe(pluck('user'));
   }
 
   login(body: LoginRequest): Observable<CurrentUser> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, body).pipe(pluck('user'));
+    return this.http.post<AuthResponse>(`${this.apiUrl}/users/login`, body).pipe(pluck('user'));
+  }
+
+  getCurrentUser(): Observable<CurrentUser> {
+    return this.http.get<AuthResponse>(`${this.apiUrl}/user`).pipe(pluck('user'));
   }
 }

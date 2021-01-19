@@ -13,6 +13,7 @@ import { RegisterEffect } from './store/effects/register.effects';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { LoginEffect } from './store/effects/login.effects';
+import { CurrentUserEffect } from './store/effects/currentUser.effects';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
@@ -22,7 +23,7 @@ import { LoginEffect } from './store/effects/login.effects';
     ReactiveFormsModule,
     SharedModule,
     StoreModule.forFeature('auth', reducer),
-    EffectsModule.forFeature([RegisterEffect, LoginEffect]),
+    EffectsModule.forFeature([RegisterEffect, LoginEffect, CurrentUserEffect]),
   ],
   providers: [AuthService],
 })
