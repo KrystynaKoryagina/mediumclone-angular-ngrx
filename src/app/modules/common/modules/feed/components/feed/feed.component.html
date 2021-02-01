@@ -1,5 +1,5 @@
 <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
-<!-- Error component -->
+<app-error-message></app-error-message>
 
 <ng-container *ngIf="feed$ | async">
   <div 
@@ -8,7 +8,7 @@
   >
     <div class="article-meta">
       <a [routerLink]="['/profile', article.author.username]">
-        <img [src]="article.author.image" [alt]="article.author.username">
+        <img [src]="article.author.image" alt="">
       </a>
       <div class="info">
         <a class="author" [routerLink]="['/profile', article.author.username]">

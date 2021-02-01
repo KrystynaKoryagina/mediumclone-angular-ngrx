@@ -10,6 +10,7 @@ import { FeedService } from './services/feed/feed.service';
 import { reducer } from './store/reducers/feed.reducers';
 import { GetFeedEffect } from './store/effects/get-feed.effects';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ErrorMessageModule } from '../error-message/error-message.module';
 
 @NgModule({
   declarations: [FeedComponent],
@@ -17,6 +18,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatProgressBarModule,
     CommonModule,
     RouterModule,
+    ErrorMessageModule,
     StoreModule.forFeature('feed', reducer),
     EffectsModule.forFeature([GetFeedEffect]),
   ],
