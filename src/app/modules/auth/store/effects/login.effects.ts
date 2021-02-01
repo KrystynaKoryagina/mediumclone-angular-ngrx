@@ -8,7 +8,7 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { CurrentUser } from '../../../../models/user';
-import { PersistenceService } from '../../../../modules/shared/services/persistence/persistence.service';
+import { PersistenceService } from '../../../common/services/persistence/persistence.service';
 import { loginAction, loginFailureAction, loginSuccessAction } from '../actions/login.actions';
 
 @Injectable()

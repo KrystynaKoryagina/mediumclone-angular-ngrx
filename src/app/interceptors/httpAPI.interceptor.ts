@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { PersistenceService } from '../modules/shared/services/persistence/persistence.service';
+import { PersistenceService } from '../modules/common/services/persistence/persistence.service';
 
 @Injectable()
 export class HttpAPIInterceptor implements HttpInterceptor {

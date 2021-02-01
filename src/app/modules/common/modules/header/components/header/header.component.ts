@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CurrentUser } from '../../../../models/user';
-import { currentUserSelector, isLoggedInSelector } from '../../../../modules/auth/store/selectors/auth.selectors';
+import { CurrentUser } from '../../../../../../models/user';
+import { currentUserSelector, isLoggedInSelector } from '../../../../../auth/store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-header',

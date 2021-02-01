@@ -1,0 +1,35 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
+<!-- Error component -->
+
+<ng-container *ngIf="feed$ | async">
+  <div 
+    class="article-preview" 
+    *ngFor="let article of (feed$ | async).articles"
+  >
+    <div class="article-meta">
+      <a [routerLink]="['/profile', article.author.username]">
+        <img [src]="article.author.image" [alt]="article.author.username">
+      </a>
+      <div class="info">
+        <a class="author" [routerLink]="['/profile', article.author.username]">
+          {{ article.author.username }}
+        </a>
+        <span class="date">
+          {{ article.createdAt }}
+        </span>
+      </div>
+      <div class="pull-xs-right">
+        <!-- Like btn -->
+        ADD TO FAVORITES
+      </div>    
+    </div>
+    <a class="preview-link" [routerLink]="['/articles', article.slug]">
+      <h1>{{ article.title }}</h1>
+      <p>{{ article.description }}</p>
+      <span>Read more...</span>
+    <!-- Tags -->
+    </a>
+
+    <!-- Pagination component -->
+  </div>  
+</ng-container>

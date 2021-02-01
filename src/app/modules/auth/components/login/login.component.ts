@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { BackendErrors } from '../../../../models/backendErrors';
+import { BackendErrors } from '../../../../models/backend-errors';
 import { LoginRequest } from '../../../../models/auth';
 import { loginAction } from '../../store/actions/login.actions';
 import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors/auth.selectors';
@@ -15,8 +15,8 @@ import { isSubmittingSelector, validationErrorsSelector } from '../../store/sele
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  private readonly destroy$: Subject<void> = new Subject();
+export class LoginComponent implements OnInit, OnDestroy {
+  private readonly destroy$ = new Subject<void>();
 
   loginForm: FormGroup;
   isSubmitting: boolean;
@@ -29,6 +29,11 @@ export class LoginComponent implements OnInit {
     this.initValues();
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   private initLoginForm(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -38,9 +43,7 @@ export class LoginComponent implements OnInit {
 
   private initValues(): void {
     this.store.pipe(select(isSubmittingSelector), takeUntil(this.destroy$)).subscribe({
-      next: (value: boolean) => {
-        this.isSubmitting = value;
-      },
+      next: (value: boolean) => (this.isSubmitting = value),
     });
 
     this.validationErrors$ = this.store.pipe(select(validationErrorsSelector));

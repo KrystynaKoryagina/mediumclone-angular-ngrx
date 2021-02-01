@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 
-import { BackendErrors } from '../../../../models/backendErrors';
+import { BackendErrors } from '../../../../models/backend-errors';
 import { LoginRequest } from '../../../../models/auth';
 import { CurrentUser } from '../../../../models/user';
-import { AuthActionTypes } from './actionTypes';
+import { AuthActionTypes } from './auth-action';
 
 export const loginAction = createAction(AuthActionTypes.LOGIN, props<{ loginBody: LoginRequest }>());
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { select, Store } from '@ngrx/store';
@@ -8,15 +8,15 @@ import { takeUntil } from 'rxjs/operators';
 import { registerAction } from '../../store/actions/register.actions';
 import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors/auth.selectors';
 import { RegisterRequest } from '../../../../models/auth';
-import { BackendErrors } from '../../../../models/backendErrors';
+import { BackendErrors } from '../../../../models/backend-errors';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
-  private readonly destroy$: Subject<void> = new Subject();
+export class RegisterComponent implements OnInit, OnDestroy {
+  private readonly destroy$ = new Subject<void>();
 
   registerForm: FormGroup;
   isSubmitting: boolean;
@@ -27,6 +27,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.initRegisterForm();
     this.initValues();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private initRegisterForm(): void {

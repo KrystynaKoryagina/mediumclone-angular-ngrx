@@ -9,7 +9,7 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth/auth.service';
 import { CurrentUser } from '../../../../models/user';
 import { registerAction, registerFailureAction, registerSuccessAction } from '../actions/register.actions';
-import { PersistenceService } from '../../../../modules/shared/services/persistence/persistence.service';
+import { PersistenceService } from '../../../common/services/persistence/persistence.service';
 
 @Injectable()
 export class RegisterEffect {

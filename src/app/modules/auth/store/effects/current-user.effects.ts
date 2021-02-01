@@ -4,13 +4,13 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { PersistenceService } from '../../../../modules/shared/services/persistence/persistence.service';
+import { PersistenceService } from '../../../common/services/persistence/persistence.service';
 import { AuthService } from '../../services/auth/auth.service';
 import {
   getCurrentUserAction,
   getCurrentUserFailureAction,
   getCurrentUserSuccessAction,
-} from '../actions/currentUser.actions';
+} from '../actions/current-user.actions';
 import { CurrentUser } from '../../../../models/user';
 
 @Injectable()

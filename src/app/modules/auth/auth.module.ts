@@ -10,10 +10,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { reducer } from './store/reducers/auth.reducers';
 import { AuthService } from './services/auth/auth.service';
 import { RegisterEffect } from './store/effects/register.effects';
-import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { LoginEffect } from './store/effects/login.effects';
-import { CurrentUserEffect } from './store/effects/currentUser.effects';
+import { CurrentUserEffect } from './store/effects/current-user.effects';
+import { ListErrorsModule } from '../common/modules/list-errors/list-errors.module';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
@@ -21,7 +21,7 @@ import { CurrentUserEffect } from './store/effects/currentUser.effects';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    SharedModule,
+    ListErrorsModule,
     StoreModule.forFeature('auth', reducer),
     EffectsModule.forFeature([RegisterEffect, LoginEffect, CurrentUserEffect]),
   ],

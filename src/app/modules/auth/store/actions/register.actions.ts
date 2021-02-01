@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 
-import { BackendErrors } from '../../../../models/backendErrors';
+import { BackendErrors } from '../../../../models/backend-errors';
 import { RegisterRequest } from '../../../../models/auth';
 import { CurrentUser } from '../../../../models/user';
-import { AuthActionTypes } from './actionTypes';
+import { AuthActionTypes } from './auth-action';
 
 export const registerAction = createAction(AuthActionTypes.REGISTER, props<{ registerBody: RegisterRequest }>());
 

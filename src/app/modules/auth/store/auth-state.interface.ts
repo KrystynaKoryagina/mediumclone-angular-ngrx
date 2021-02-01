@@ -1,4 +1,4 @@
-import { BackendErrors } from '../../../models/backendErrors';
+import { BackendErrors } from '../../../models/backend-errors';
 import { CurrentUser } from '../../../models/user';
 
 export interface AuthState {

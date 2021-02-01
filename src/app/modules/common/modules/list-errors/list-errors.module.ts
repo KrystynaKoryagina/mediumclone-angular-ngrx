@@ -5,7 +5,7 @@ import { ListErrorsComponent } from './components/list-errors/list-errors.compon
 
 @NgModule({
   declarations: [ListErrorsComponent],
-  exports: [ListErrorsComponent],
   imports: [CommonModule],
+  exports: [ListErrorsComponent],
 })
-export class SharedModule {}
+export class ListErrorsModule {}

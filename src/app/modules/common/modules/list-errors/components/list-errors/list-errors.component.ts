@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { BackendErrors } from '../../../../models/backendErrors';
+import { BackendErrors } from '../../../../../../models/backend-errors';
 
 @Component({
   selector: 'app-list-errors',

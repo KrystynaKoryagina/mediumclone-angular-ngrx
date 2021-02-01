@@ -10,21 +10,21 @@ import { CurrentUser } from '../../../../models/user';
 
 @Injectable()
 export class AuthService {
-  apiUrl: string;
+  private readonly baseUrl: string;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = `${environment.baseUrl}`;
+    this.baseUrl = `${environment.baseUrl}`;
   }
 
   register(body: RegisterRequest): Observable<CurrentUser> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/users`, body).pipe(pluck('user'));
+    return this.http.post<AuthResponse>(`${this.baseUrl}/users`, body).pipe(pluck('user'));
   }
 
   login(body: LoginRequest): Observable<CurrentUser> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/users/login`, body).pipe(pluck('user'));
+    return this.http.post<AuthResponse>(`${this.baseUrl}/users/login`, body).pipe(pluck('user'));
   }
 
   getCurrentUser(): Observable<CurrentUser> {
-    return this.http.get<AuthResponse>(`${this.apiUrl}/user`).pipe(pluck('user'));
+    return this.http.get<AuthResponse>(`${this.baseUrl}/user`).pipe(pluck('user'));
   }
 }
