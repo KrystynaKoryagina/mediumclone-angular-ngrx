@@ -20,9 +20,10 @@ const feedReducer = createReducer(
     isLoading: false,
     data: action.feed,
   })),
-  on(feedFailureAction, (state) => ({
+  on(feedFailureAction, (state, action) => ({
     ...state,
     isLoading: false,
+    error: action.error,
   }))
 );
 

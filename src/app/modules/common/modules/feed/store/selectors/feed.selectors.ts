@@ -8,3 +8,5 @@ export const feedFeatureSelector = createFeatureSelector<AppState, FeedState>('f
 export const isLoadingSelector = createSelector(feedFeatureSelector, (state: FeedState) => state.isLoading);
 
 export const feedSelector = createSelector(feedFeatureSelector, (state: FeedState) => state.data);
+
+export const errorFeedSelector = createSelector(feedFeatureSelector, (state: FeedState) => state.error);

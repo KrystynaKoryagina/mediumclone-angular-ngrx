@@ -7,4 +7,4 @@ export const feedAction = createAction(FeedActionsTypes.GET_FEED, props<{ isGlob
 
 export const feedSuccessAction = createAction(FeedActionsTypes.GET_FEED_SUCCESS, props<{ feed: FeedResponse }>());
 
-export const feedFailureAction = createAction(FeedActionsTypes.GET_FEED_FAILURE);
+export const feedFailureAction = createAction(FeedActionsTypes.GET_FEED_FAILURE, props<{ error: string }>());

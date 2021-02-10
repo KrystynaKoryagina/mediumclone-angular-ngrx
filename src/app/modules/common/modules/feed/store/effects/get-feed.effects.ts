@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -18,7 +19,7 @@ export class GetFeedEffect {
       switchMap(({ isGlobalFeed }) => {
         return this.feedService.getFeed(isGlobalFeed).pipe(
           map((feed: FeedResponse) => feedSuccessAction({ feed })),
-          catchError(() => of(feedFailureAction()))
+          catchError((err: HttpErrorResponse) => of(feedFailureAction({ error: err.error })))
         );
       })
     )
