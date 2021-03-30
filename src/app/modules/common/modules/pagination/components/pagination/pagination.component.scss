@@ -1,0 +1,21 @@
+.page-item {
+  cursor: pointer;
+}
+
+.page-link {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  padding: 0;
+}
+
+.page-item:first-child .page-link {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.page-item:last-child .page-link {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}

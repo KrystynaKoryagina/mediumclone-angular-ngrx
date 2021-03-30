@@ -11,6 +11,7 @@ import { reducer } from './store/reducers/feed.reducers';
 import { GetFeedEffect } from './store/effects/get-feed.effects';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ErrorMessageModule } from '../error-message/error-message.module';
+import { PaginationModule } from '../pagination/pagination.module';
 
 @NgModule({
   declarations: [FeedComponent],
@@ -19,6 +20,7 @@ import { ErrorMessageModule } from '../error-message/error-message.module';
     CommonModule,
     RouterModule,
     ErrorMessageModule,
+    PaginationModule,
     StoreModule.forFeature('feed', reducer),
     EffectsModule.forFeature([GetFeedEffect]),
   ],

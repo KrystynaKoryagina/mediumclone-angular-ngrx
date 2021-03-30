@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../../../../../environments/environment';
 import { FeedResponse } from '../../../../../../models/feed';
+import { PageRequest } from '../../../../../../models/pagination';
+import { PageRequestConverter } from '../../../../../../utills/page-request-converter';
 
 @Injectable()
 export class FeedService {
@@ -14,10 +16,11 @@ export class FeedService {
     this.baseUrl = `${environment.baseUrl}/articles`;
   }
 
-  getFeed(isGlobalFeed: boolean): Observable<FeedResponse> {
+  getFeed(pageRequest: PageRequest, isGlobalFeed: boolean): Observable<FeedResponse> {
     const feedRequestUrl = `${this.baseUrl}/feed`;
     const requestUrl = isGlobalFeed ? this.baseUrl : feedRequestUrl;
+    const params = PageRequestConverter.convertToHttpParams(pageRequest);
 
-    return this.http.get<FeedResponse>(requestUrl);
+    return this.http.get<FeedResponse>(requestUrl, { params });
   }
 }

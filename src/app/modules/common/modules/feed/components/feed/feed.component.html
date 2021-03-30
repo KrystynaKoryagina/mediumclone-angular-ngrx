@@ -29,7 +29,10 @@
       <span>Read more...</span>
     <!-- Tags -->
     </a>
-
-    <!-- Pagination component -->
   </div>  
+
+  <app-pagination 
+    [totalItems]="(feed$ | async).articlesCount"
+    (selectedPage)="setPageRequest($event)"
+  ></app-pagination>
 </ng-container>

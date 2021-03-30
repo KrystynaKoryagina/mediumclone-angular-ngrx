@@ -16,8 +16,8 @@ export class GetFeedEffect {
   getFeed$ = createEffect(() =>
     this.actions$.pipe(
       ofType(feedAction),
-      switchMap(({ isGlobalFeed }) => {
-        return this.feedService.getFeed(isGlobalFeed).pipe(
+      switchMap(({ pageRequest, isGlobalFeed }) => {
+        return this.feedService.getFeed(pageRequest, isGlobalFeed).pipe(
           map((feed: FeedResponse) => feedSuccessAction({ feed })),
           catchError((err: HttpErrorResponse) => of(feedFailureAction({ error: err.error })))
         );
